@@ -1,0 +1,18 @@
+{
+  "postcode": "M1 1AA",
+  "address": "123 Example Street, Manchester",
+  "epc_band_current": "D",
+  "epc_band_potential": "B",
+  "epc_date": "2020-05-15T00:00:00.000Z",
+  "construction_age_band": "1930-1949",
+  "property_type": "semi-detached",
+  "storeys": 2,
+  "total_floor_area": 85,
+  "wall_description": "cavity wall",
+  "roof_description": "pitched roof",
+  "heating_type": "gas boiler",
+  "ventilation_type": "natural",
+  "airtightness_condition": "average",
+  "damp_history": false,
+  "listed_building": false
+}

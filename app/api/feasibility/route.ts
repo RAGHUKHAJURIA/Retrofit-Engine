@@ -1,16 +1,14 @@
-import { ArchetypeEngine } from "@/src/core/engines/archetype.engine";
+import { RetrofitFeasibilityEngine } from "@/src/index";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const archetype = ArchetypeEngine.classify(body);
+    const decision = RetrofitFeasibilityEngine.evaluateProperty(body);
 
-    return Response.json({
-      archetype
-    });
+    return Response.json(decision);
   } catch (error) {
-    console.error("Error classifying archetype:", error);
-    return Response.json({ error: "Failed to classify archetype" }, { status: 500 });
+    console.error("Error evaluating feasibility:", error);
+    return Response.json({ error: "Failed to evaluate property" }, { status: 500 });
   }
 }
