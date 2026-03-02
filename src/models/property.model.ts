@@ -19,7 +19,16 @@ export interface PropertyInputDTO {
 
   ventilation_type?: string;
   airtightness_condition?: string;
-  damp_history?: boolean;
+  
+  // New user requirement fields
+  address_id?: string;
+  extension_present?: string;
+  structural_alterations?: string;
+  damp_history?: string;
+  mould_present?: string;
+  condensation_history?: string;
+  roof_leaks?: string;
+  retrofit_target?: string;
 
   listed_building?: boolean;
 }
