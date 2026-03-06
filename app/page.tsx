@@ -22,6 +22,15 @@ export default function Home() {
     roof_leaks: "unknown",
     ventilation_type: "unknown",
     retrofit_target: "target_epc_c",
+    epc_band_current: "E",
+    windows: "unknown",
+    loft_insulation_depth: "unknown",
+    wall_insulation_status: "unknown",
+    floor_type: "unknown",
+    current_heating_system: "unknown",
+    hot_water_cylinder: "unknown",
+    is_listed: "unknown",
+    in_conservation_area: "unknown",
   });
   
   const [loading, setLoading] = useState(false);
@@ -481,6 +490,18 @@ export default function Home() {
                         </select>
                       </div>
                       <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Current EPC Band</label>
+                        <select name="epc_band_current" value={formData.epc_band_current} onChange={handleChange} className="w-full p-4 bg-gray-50 border-gray-300 border rounded-xl focus:ring-4 focus:ring-[#0F4C3A]/20 outline-none font-bold cursor-pointer">
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                          <option value="C">C</option>
+                          <option value="D">D</option>
+                          <option value="E">E</option>
+                          <option value="F">F</option>
+                          <option value="G">G</option>
+                        </select>
+                      </div>
+                      <div>
                         <label className="block text-sm font-bold text-gray-700 mb-2">Intended Retrofit Ambition <span className="text-red-500">*</span></label>
                         <select required name="retrofit_target" value={formData.retrofit_target} onChange={handleChange} className="w-full p-4 bg-gray-50 border-gray-300 border shadow-inner text-[#0F4C3A] rounded-xl focus:ring-4 focus:ring-[#0F4C3A]/20 outline-none font-bold cursor-pointer">
                           <option value="improve_1_band">Improve by 1 EPC band</option>
@@ -488,6 +509,112 @@ export default function Home() {
                           <option value="target_epc_b">Target EPC B</option>
                           <option value="electrification">Electrification (heat pump)</option>
                           <option value="not_sure">Not sure</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Grid for E, F, G */}
+                <div className="grid lg:grid-cols-3 gap-8 pt-6">
+                  {/* Section E: Fabric Details */}
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
+                      <div className="w-8 h-8 rounded-full bg-[#0F4C3A]/10 text-[#0F4C3A] flex items-center justify-center font-bold">E</div>
+                      <h3 className="text-xl font-bold text-gray-900">Fabric Details</h3>
+                    </div>
+                    <div className="space-y-5">
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Windows</label>
+                        <select name="windows" value={formData.windows} onChange={handleChange} className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0F4C3A] outline-none font-medium cursor-pointer">
+                          <option value="single">Single glazing</option>
+                          <option value="double_pre2002">Double glazing (pre-2002)</option>
+                          <option value="double_modern">Modern double glazing</option>
+                          <option value="triple">Triple glazing</option>
+                          <option value="unknown">Unknown</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Loft Insulation Depth</label>
+                        <select name="loft_insulation_depth" value={formData.loft_insulation_depth} onChange={handleChange} className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0F4C3A] outline-none font-medium cursor-pointer">
+                          <option value="none">None</option>
+                          <option value="<100mm">&lt;100mm</option>
+                          <option value="100-200mm">100–200mm</option>
+                          <option value="200mm+">200mm+</option>
+                          <option value="unknown">Unknown</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Wall Insulation Status</label>
+                        <select name="wall_insulation_status" value={formData.wall_insulation_status} onChange={handleChange} className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0F4C3A] outline-none font-medium cursor-pointer">
+                          <option value="cavity_unfilled">Cavity unfilled</option>
+                          <option value="cavity_filled">Cavity filled</option>
+                          <option value="solid_uninsulated">Solid wall uninsulated</option>
+                          <option value="solid_insulated">Solid wall insulated</option>
+                          <option value="unknown">Unknown</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Floor Type</label>
+                        <select name="floor_type" value={formData.floor_type} onChange={handleChange} className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0F4C3A] outline-none font-medium cursor-pointer">
+                          <option value="solid_concrete">Solid concrete</option>
+                          <option value="suspended_timber">Suspended timber</option>
+                          <option value="unknown">Unknown</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Section F: Heating & Systems */}
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
+                      <div className="w-8 h-8 rounded-full bg-[#0F4C3A]/10 text-[#0F4C3A] flex items-center justify-center font-bold">F</div>
+                      <h3 className="text-xl font-bold text-gray-900">Heating & Systems</h3>
+                    </div>
+                    <div className="space-y-5">
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Current Heating System</label>
+                        <select name="current_heating_system" value={formData.current_heating_system} onChange={handleChange} className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0F4C3A] outline-none font-medium cursor-pointer">
+                          <option value="gas_boiler_standard">Gas boiler (standard)</option>
+                          <option value="gas_boiler_condensing">Gas boiler (condensing)</option>
+                          <option value="electric_heating">Electric heating</option>
+                          <option value="heat_pump">Heat pump</option>
+                          <option value="oil_boiler">Oil boiler</option>
+                          <option value="unknown">Unknown</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Hot Water Cylinder?</label>
+                        <select name="hot_water_cylinder" value={formData.hot_water_cylinder} onChange={handleChange} className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0F4C3A] outline-none font-medium cursor-pointer">
+                          <option value="yes">Yes</option>
+                          <option value="no">No</option>
+                          <option value="unknown">Unknown</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Section G: Constraints Screening */}
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
+                      <div className="w-8 h-8 rounded-full bg-[#0F4C3A]/10 text-[#0F4C3A] flex items-center justify-center font-bold">G</div>
+                      <h3 className="text-xl font-bold text-gray-900">Constraints Screening</h3>
+                    </div>
+                    <div className="space-y-5">
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Is the property listed?</label>
+                        <select name="is_listed" value={formData.is_listed} onChange={handleChange} className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0F4C3A] outline-none font-medium cursor-pointer text-amber-700">
+                          <option value="yes">Yes</option>
+                          <option value="no" className="text-gray-900">No</option>
+                          <option value="unknown" className="text-gray-900">Unknown</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Is it in a conservation area?</label>
+                        <select name="in_conservation_area" value={formData.in_conservation_area} onChange={handleChange} className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0F4C3A] outline-none font-medium cursor-pointer text-amber-700">
+                          <option value="yes">Yes</option>
+                          <option value="no" className="text-gray-900">No</option>
+                          <option value="unknown" className="text-gray-900">Unknown</option>
                         </select>
                       </div>
                     </div>
@@ -510,105 +637,178 @@ export default function Home() {
                 </div>
               </form>
 
-              {/* === INLINE RESULTS VIEW === */}
+              {/* === PREMIUM RESULTS DASHBOARD === */}
               <AnimatePresence>
                 {result && result.decision && (
                   <motion.div 
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    className="bg-[#fbfcfa] border-t-2 border-green-50 overflow-hidden"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="mt-12 bg-gradient-to-br from-[#eafaf1] to-[#f4fdf8] rounded-[2.5rem] p-6 md:p-10 shadow-2xl border border-green-100 overflow-hidden relative"
                   >
-                    <div className="p-8 md:p-12">
-                      <div className="flex flex-col md:flex-row items-center justify-between mb-10 pb-6 border-b border-gray-100">
-                        <div>
-                           <h2 className="text-3xl font-extrabold text-[#0F4C3A] flex items-center gap-3">
-                              <CheckCircle className="w-8 h-8 text-green-500" /> Assessment Complete
-                           </h2>
-                           <p className="text-gray-500 mt-2 font-medium">Deterministic pipeline successfully processed {formData.postcode}</p>
+                    {/* Header bar */}
+                    <div className="flex justify-between items-center mb-8">
+                      <div>
+                        <h2 className="text-2xl font-extrabold text-[#0F4C3A] tracking-tight">Retrofit Assessment</h2>
+                        <p className="text-gray-500 font-medium">Property: {formData.postcode}</p>
+                      </div>
+                      <button onClick={handleDownloadPdf} className="px-6 py-3 bg-white hover:bg-[#0F4C3A] text-[#0F4C3A] hover:text-white border border-[#0F4C3A]/20 font-bold rounded-full shadow-lg transition-all flex items-center gap-2 group">
+                        <FileText className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                        Download PDF
+                      </button>
+                    </div>
+
+                    <div className="grid lg:grid-cols-12 gap-6 relative z-10">
+                      
+                      {/* LEFT SIDEBAR: Overview & Metrics */}
+                      <div className="lg:col-span-3 space-y-6">
+                        <div className="bg-white/60 backdrop-blur-xl p-6 rounded-[2rem] shadow-sm border border-white">
+                           <h4 className="text-sm font-bold text-gray-400 tracking-widest uppercase mb-4">Overview</h4>
+                           <div className="mb-6">
+                             <p className="text-sm font-bold text-gray-500 mb-1">Current EPC:</p>
+                             <div className="text-3xl font-black text-gray-900 mb-2">Band {result.decision.epc_projection?.current || 'E'}</div>
+                             <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden flex">
+                               <div className="h-full bg-orange-400 w-1/3"></div>
+                             </div>
+                           </div>
+                           <div className="mb-6">
+                             <p className="text-sm font-bold text-gray-500 mb-1">Target EPC:</p>
+                             <div className="text-3xl font-black text-gray-900 mb-2">Band {result.decision.achievable_epc_band || 'C'}</div>
+                             <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden flex">
+                               <div className="h-full bg-green-500 w-2/3"></div>
+                             </div>
+                           </div>
                         </div>
-                        <div className={`mt-6 md:mt-0 px-8 py-3 rounded-full font-black text-tracking-widest text-lg text-white shadow-lg flex items-center gap-2 ${
-                          result.decision.final_status === 'GREEN' ? 'bg-gradient-to-r from-green-500 to-green-600 shadow-green-500/30' :
-                          result.decision.final_status === 'AMBER' ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-amber-500/30' : 'bg-gradient-to-r from-red-500 to-red-600 shadow-red-500/30'
-                        }`}>
-                          {result.decision.final_status} PATHWAY STATUS
+
+                        <div className="bg-white/60 backdrop-blur-xl p-6 rounded-[2rem] shadow-sm border border-white">
+                           <h4 className="text-sm font-bold text-gray-400 tracking-widest uppercase mb-4">Metrics</h4>
+                           <p className="text-sm font-bold text-gray-500 mb-1">CO2 Reduction:</p>
+                           <div className="text-2xl font-black text-gray-900 mb-2">3.2 Tonnes/Year</div>
+                        </div>
+
+                        <div className="bg-white/60 backdrop-blur-xl p-6 rounded-[2rem] shadow-sm border border-white relative overflow-hidden">
+                           <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100 rounded-full blur-3xl -mr-10 -mt-10 opacity-60"></div>
+                           <h4 className="text-sm font-bold text-gray-400 tracking-widest uppercase mb-4 relative z-10">Alert</h4>
+                           <div className="flex items-start gap-3 relative z-10">
+                             <ShieldAlert className={`w-8 h-8 ${result.decision.risk_assessment?.moisture_risk === 'HIGH' ? 'text-red-500' : result.decision.risk_assessment?.moisture_risk === 'MEDIUM' ? 'text-amber-500' : 'text-green-500'}`} />
+                             <div>
+                               <p className="font-bold text-gray-900">Moisture Risk {result.decision.risk_assessment?.moisture_risk}</p>
+                               <p className="text-xs text-gray-500 mt-1">{result.decision.risk_assessment?.moisture_reason}</p>
+                             </div>
+                           </div>
                         </div>
                       </div>
 
-                      <div className="grid md:grid-cols-2 gap-8 mb-10">
-                        <div className="bg-white p-6 rounded-[1.5rem] shadow-sm border border-gray-100 flex items-center gap-6">
-                          <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-green-50 to-green-100 flex items-center justify-center border border-green-200">
-                             <Leaf className="w-8 h-8 text-green-600"/>
-                          </div>
-                          <div>
-                            <h4 className="text-gray-400 font-bold mb-1 uppercase text-xs tracking-wider">Target Achieved</h4>
-                            <p className="text-4xl font-black text-gray-900">EPC {result.decision.achievable_epc_band}</p>
-                          </div>
-                        </div>
-                        <div className="bg-white p-6 rounded-[1.5rem] shadow-sm border border-gray-100 flex items-center gap-6">
-                          <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-50 to-blue-100 flex items-center justify-center border border-blue-200">
-                             <Activity className="w-8 h-8 text-blue-600"/>
-                          </div>
-                          <div>
-                            <h4 className="text-gray-400 font-bold mb-1 uppercase text-xs tracking-wider">Uncertainty Risk</h4>
-                            <p className="text-4xl font-black text-gray-900">{result.decision.uncertainty_score} <span className="text-xl font-medium text-gray-400">/ 100</span></p>
-                          </div>
-                        </div>
-                      </div>
+                      {/* CENTER: 3D Graphic & Dynamic Flow */}
+                      <div className="lg:col-span-6 flex flex-col items-center justify-between space-y-6 relative">
+                         {/* Centered Graphic */}
+                         <div className="relative w-full h-[350px] md:h-[450px] flex items-center justify-center">
+                            {/* Abstract glowing ring beneath the house */}
+                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-green-400 opacity-20 blur-[100px] rounded-full"></div>
+                            
+                            {/* Embedded 3D House Graphic generated by you */}
+                            <Image 
+                              src="/isometric_house_energy_model_1772773064352.png" 
+                              alt="Generated 3D House Model"
+                              layout="fill"
+                              objectFit="contain"
+                              className="relative z-10 drop-shadow-2xl"
+                            />
+                            
+                            {/* Overlay Badges */}
+                            <div className="absolute top-1/4 right-10 bg-[#0F4C3A]/80 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-white/20 shadow-lg z-20">Solar PV</div>
+                            <div className="absolute bottom-1/4 right-10 bg-[#0F4C3A]/80 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-white/20 shadow-lg z-20">Heat Pump</div>
+                            <div className="absolute bottom-10 left-10 bg-[#0F4C3A]/80 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-white/20 shadow-lg z-20">Airtightness</div>
+                         </div>
 
-                      <div className="space-y-6">
-                        <div className="bg-white p-8 rounded-[1.5rem] shadow-sm border border-gray-100">
-                          <h4 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                             <div className="bg-gray-100 p-2 rounded-lg text-gray-600"><Cpu className="w-5 h-5"/></div> Correct Sequencing
-                          </h4>
-                          {result.decision.sequencing_order?.length > 0 ? (
-                            <div className="grid gap-3">
-                              {result.decision.sequencing_order.map((item: string, i: number) => (
-                                <div key={i} className="flex flex-row items-center gap-5 p-2 pr-6 rounded-2xl hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-colors">
-                                   <div className="w-10 h-10 rounded-full bg-[#0F4C3A] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md">0{i+1}</div>
-                                   <div className="font-bold text-gray-800 text-lg">{item}</div>
+                         {/* Bottom Stats Cards */}
+                         <div className="grid grid-cols-2 gap-4 w-full">
+                           <div className="bg-white/80 backdrop-blur-xl p-5 rounded-[2rem] shadow-sm border border-white">
+                              <h4 className="text-xs font-bold text-gray-400 tracking-widest uppercase flex items-center gap-2 mb-3"><Activity className="w-4 h-4"/> Energy Flow Live</h4>
+                              <div className="flex justify-between">
+                                <div>
+                                  <p className="text-xs text-gray-500 font-bold mb-1">Usage</p>
+                                  <p className="text-xl font-black text-gray-900">1.8kW</p>
                                 </div>
-                              ))}
-                            </div>
-                          ) : (
-                            <p className="text-gray-500 font-medium p-6 bg-gray-50 rounded-2xl text-center">No measures recommended for this pathway.</p>
-                          )}
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-6">
-                          <div className="bg-amber-50/40 p-8 rounded-[1.5rem] border border-amber-200">
-                            <h4 className="text-lg font-bold text-amber-900 mb-5 flex items-center gap-2"><ShieldAlert className="text-amber-500 w-5 h-5"/> Preconditions</h4>
-                            {result.decision.required_preconditions?.length > 0 ? (
-                              <ul className="space-y-3 font-semibold text-amber-800">
-                                {result.decision.required_preconditions.map((item: string, i: number) => (
-                                  <li key={i} className="flex gap-2 isolate before:content-['•'] before:text-amber-500">{item}</li>
+                                <div className="text-right">
+                                  <p className="text-xs text-green-600 font-bold mb-1">Solar Gen</p>
+                                  <p className="text-xl font-black text-green-600">2.5kW</p>
+                                </div>
+                              </div>
+                           </div>
+                           <div className="bg-white/80 backdrop-blur-xl p-5 rounded-[2rem] shadow-sm border border-white">
+                              <h4 className="text-xs font-bold text-gray-400 tracking-widest uppercase mb-3">Efficiency Suggestions</h4>
+                              <div className="space-y-2">
+                                {result.decision.sequencing_order && result.decision.sequencing_order.slice(0, 2).map((item: string, i: number) => (
+                                  <div key={i} className="flex items-center gap-2 text-sm font-bold text-[#0F4C3A] bg-[#0F4C3A]/5 p-2 rounded-xl">
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                    <span className="truncate">{item}</span>
+                                  </div>
                                 ))}
-                              </ul>
-                            ) : (
-                              <p className="text-amber-700/60 font-medium">None required.</p>
-                            )}
-                          </div>
-
-                          <div className="bg-red-50/40 p-8 rounded-[1.5rem] border border-red-200">
-                            <h4 className="text-lg font-bold text-red-900 mb-5 flex items-center gap-2"><ShieldAlert className="text-red-500 w-5 h-5"/> Rule Constraints</h4>
-                            {result.decision.constraints?.length > 0 ? (
-                              <ul className="space-y-3 font-semibold text-red-800">
-                                {result.decision.constraints.map((item: string, i: number) => (
-                                  <li key={i} className="flex gap-2 isolate before:content-['•'] before:text-red-500">{item}</li>
-                                ))}
-                              </ul>
-                            ) : (
-                              <p className="text-red-700/60 font-medium">No constraints triggered.</p>
-                            )}
-                          </div>
-                        </div>
+                              </div>
+                           </div>
+                         </div>
                       </div>
 
-                      <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col items-center">
-                        <button onClick={handleDownloadPdf} className="px-10 py-5 bg-[#0F4C3A] hover:bg-[#15614b] text-white font-extrabold text-xl rounded-full shadow-2xl shadow-[#0F4C3A]/30 transition-all transform hover:-translate-y-1 flex items-center gap-4">
-                          <FileText className="w-6 h-6" />
-                          Download Official Compliance PDF
-                        </button>
-                        <p className="text-sm text-gray-400 font-medium mt-4">Includes full audit trail and assumption logs.</p>
+                      {/* RIGHT SIDEBAR: Performance & Charts */}
+                      <div className="lg:col-span-3 space-y-6">
+                        <div className="bg-white/60 backdrop-blur-xl p-6 rounded-[2rem] shadow-sm border border-white relative">
+                           <h4 className="text-sm font-bold text-gray-400 tracking-widest uppercase mb-4 flex justify-between items-center">
+                             Energy Performance <ChevronRight className="w-4 h-4" />
+                           </h4>
+                           <p className="text-sm font-bold text-gray-900 mb-6">EPC Band {result.decision.epc_projection?.current} | {result.decision.achievable_epc_band}</p>
+                           
+                           {/* Semi-circle Gauge placeholder */}
+                           <div className="relative w-full aspect-[2/1] overflow-hidden flex items-end justify-center mb-2">
+                             <div className="absolute top-0 w-full aspect-square rounded-full border-[1.5rem] border-gray-100 border-t-red-400 border-r-amber-400 border-b-green-400 transform -rotate-45"></div>
+                             <div className="absolute w-2 h-1/2 bg-gray-800 rounded-full bottom-0 origin-bottom transform rotate-45 z-10"></div>
+                             <div className="w-8 h-8 bg-gray-800 rounded-full z-20 absolute bottom-[-16px]"></div>
+                           </div>
+                           
+                           <div className="text-center mt-4">
+                             <span className="text-4xl font-black text-gray-900">81</span>
+                             <p className="text-xs font-bold text-gray-500 mt-1">points / target 92</p>
+                           </div>
+                        </div>
+
+                        <div className="bg-white/60 backdrop-blur-xl p-6 rounded-[2rem] shadow-sm border border-white">
+                           <h4 className="text-sm font-bold text-gray-400 tracking-widest uppercase mb-4 flex justify-between items-center">
+                             Carbon Footprint <ChevronRight className="w-4 h-4" />
+                           </h4>
+                           <div className="h-24 w-full flex items-end justify-between gap-1 mb-2">
+                             {[80, 75, 60, 45, 40, 38].map((h, i) => (
+                               <div key={i} className={`w-full rounded-t-md ${i === 5 ? 'bg-green-400' : 'bg-green-100'}`} style={{ height: `${h}%` }}></div>
+                             ))}
+                           </div>
+                           <div className="flex justify-between text-xs font-bold text-gray-400 mt-2">
+                             <span>Current: 4.1 T/yr</span>
+                             <span className="text-green-600">Goal: 2.5 T/yr</span>
+                           </div>
+                        </div>
+
+                        <div className="bg-white/60 backdrop-blur-xl p-6 rounded-[2rem] shadow-sm border border-white">
+                           <h4 className="text-sm font-bold text-gray-400 tracking-widest uppercase mb-4 flex justify-between items-center">
+                             Uncertainty Risk <ChevronRight className="w-4 h-4" />
+                           </h4>
+                           {/* Simple Radar/Hexagon placeholder using CSS */}
+                           <div className="h-24 w-full flex items-center justify-center relative my-4">
+                              <div className="w-20 h-20 rotate-45 bg-gray-100 absolute opacity-50"></div>
+                              <div className="w-16 h-16 rotate-45 bg-green-200 absolute opacity-70"></div>
+                              <div className="w-10 h-10 rotate-45 bg-green-500 absolute z-10 shadow-[0_0_15px_rgba(74,222,128,0.5)]"></div>
+                           </div>
+                           <div className="flex justify-between items-center mt-4">
+                             <div>
+                               <p className="text-xs text-gray-500 font-bold">Score</p>
+                               <p className="text-lg font-black text-gray-900">{result.decision.uncertainty_score}</p>
+                             </div>
+                             <div className="text-right">
+                               <p className="text-xs font-bold text-green-600 flex items-center justify-end gap-1"><CheckCircle className="w-3 h-3"/> {result.decision.final_status}</p>
+                               <p className="text-xs text-gray-500 font-bold mt-1">Status</p>
+                             </div>
+                           </div>
+                        </div>
+
                       </div>
                     </div>
                   </motion.div>

@@ -80,5 +80,22 @@ export const ARCHETYPE_RULES: ArchetypeRule[] = [
       retrofit_constraints: ["hard to treat cavity", "structural check required"],
       eligible_measures: ["external wall insulation"]
     }
+  },
+  {
+    id: "1930s_solid_wall",
+    conditions: {
+      construction_age_band: "1930-1949",
+      wall_description: "solid"
+    },
+    archetype: {
+      id: "1930s Solid Wall",
+      baseline_insulation_level: "none",
+      baseline_airtightness: "leaky",
+      default_ventilation: "natural open flues",
+      baseline_moisture_sensitivity: MoistureRisk.HIGH,
+      typical_heating_type: "gas boiler",
+      retrofit_constraints: ["solid wall insulation check", "damp risk assessment"],
+      eligible_measures: ["internal wall insulation", "loft insulation", "extract ventilation upgrade", "boiler replacement", "solar pv"]
+    }
   }
 ];

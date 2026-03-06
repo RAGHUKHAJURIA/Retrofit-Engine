@@ -9,7 +9,13 @@ export class DecisionEngine {
     blockedMeasures: { measure: string, reason: string }[],
     epcUplift: any,
     pathway: string[],
-    preconditions: string[]
+    preconditions: string[],
+    extraContext?: {
+      safetyAssessment: any,
+      epcProjection: { current: string, after_fabric: string, after_heating: string, after_renewables: string },
+      archetypeId: string,
+      climateRegion: string
+    }
   ): FeasibilityDecision {
     
     const constraints = blockedMeasures.map(b => `${b.measure}: ${b.reason}`);
@@ -63,11 +69,44 @@ export class DecisionEngine {
       constraints.push("Outside MVP Scope or requires heritage pathway");
     }
 
+    const moistureReasonMap: Record<string, string> = {
+      "LOW": "No significant moisture issues detected based on inputs.",
+      "MEDIUM": "Solid wall construction or unknown factors present elevated risk.",
+      "HIGH": "Reported damp, mould, or systemic leaks flagged high risk."
+    };
+
+    const moisture_risk = extraContext?.safetyAssessment?.moisture_risk || "UNKNOWN";
+    
     return {
       final_status,
       achievable_epc_band: epcUplift,
+      
+      property_baseline: {
+        archetype: extraContext?.archetypeId || "Unknown",
+        age_band: input.construction_age_band || "Unknown",
+        wall_type: input.wall_description || "Unknown",
+        floor_area: input.total_floor_area || 0,
+        climate_region: extraContext?.climateRegion || "Unknown",
+        heating_system: input.heating_type || "Unknown"
+      },
+
+      risk_assessment: {
+        moisture_risk,
+        moisture_reason: moistureReasonMap[moisture_risk] || "",
+        ventilation_adequacy: extraContext?.safetyAssessment?.ventilation_status === "ADEQUATE" ? "Adequate" : "Upgrade Required",
+        structural_uncertainty: uncertainty_score >= 30 ? "Yes" : "No"
+      },
+
+      epc_projection: extraContext?.epcProjection,
+
       constraints,
       required_preconditions: preconditions,
+      structured_preconditions: blockedMeasures.map(b => ({
+        blocked_measure: b.measure,
+        reason: b.reason,
+        required_action: b.reason.includes("ventilation") ? "Ventilation Survey & Strategy" : "Damp & Structural Survey"
+      })),
+      
       sequencing_order: pathway,
       escalation_flags,
       assumptions_log,

@@ -31,4 +31,18 @@ export interface PropertyInputDTO {
   retrofit_target?: string;
 
   listed_building?: boolean;
+
+  // Section E: Fabric Details
+  windows?: string;
+  loft_insulation_depth?: string;
+  wall_insulation_status?: string;
+  floor_type?: string;
+
+  // Section F: Heating & Systems
+  current_heating_system?: string;
+  hot_water_cylinder?: string;
+
+  // Section G: Constraints Screening
+  is_listed?: string;
+  in_conservation_area?: string;
 }
