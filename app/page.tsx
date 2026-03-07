@@ -325,8 +325,8 @@ export default function Home() {
             >
               <div className="w-full h-[500px] rounded-[2rem] overflow-hidden shadow-2xl border border-gray-100 ring-4 ring-white relative bg-gray-100 flex items-center justify-center">
                  <Image 
-                   src="/retrofit_dashboard.png" 
-                   alt="Dashboard UI" 
+                   src="/audit_ready_plan.png" 
+                   alt="Audit-ready Plan Dashboard UI" 
                    fill
                    className="object-cover" 
                  />
