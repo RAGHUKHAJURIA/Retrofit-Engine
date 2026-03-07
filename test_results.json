@@ -1,0 +1,104 @@
+[
+  {
+    "id": "TC1",
+    "status": "GREEN",
+    "archetype": "1930s cavity semi",
+    "moistureRisk": "LOW",
+    "preconditions": [],
+    "blocked": [],
+    "sequencing": [
+      "cavity wall insulation",
+      "loft insulation"
+    ],
+    "constraints": [],
+    "uncertainty": 0
+  },
+  {
+    "id": "TC2",
+    "status": "AMBER",
+    "archetype": "Pre-1919 Solid Wall Terrace",
+    "moistureRisk": "HIGH",
+    "preconditions": [
+      "Damp investigation required"
+    ],
+    "blocked": [
+      "external wall insulation",
+      "internal wall insulation"
+    ],
+    "sequencing": [
+      "Damp investigation required",
+      "loft insulation"
+    ],
+    "constraints": [
+      "external wall insulation: Blocked by safety constraint",
+      "internal wall insulation: Blocked by safety constraint"
+    ],
+    "uncertainty": 0
+  },
+  {
+    "id": "TC3",
+    "status": "AMBER",
+    "archetype": "1970s Detached",
+    "moistureRisk": "LOW",
+    "preconditions": [
+      "Fabric upgrades required before electrification."
+    ],
+    "blocked": [
+      "Heat pump installation"
+    ],
+    "sequencing": [
+      "Fabric upgrades required before electrification.",
+      "cavity wall insulation",
+      "loft insulation"
+    ],
+    "constraints": [
+      "Heat pump installation: Fabric performance below minimum threshold"
+    ],
+    "uncertainty": 0
+  },
+  {
+    "id": "TC4",
+    "status": "AMBER",
+    "archetype": "UNKNOWN",
+    "moistureRisk": "LOW",
+    "preconditions": [],
+    "blocked": [],
+    "sequencing": [],
+    "constraints": [],
+    "uncertainty": 50
+  },
+  {
+    "id": "TC5",
+    "status": "RED",
+    "archetype": "UNKNOWN",
+    "moistureRisk": "LOW",
+    "preconditions": [],
+    "blocked": [],
+    "sequencing": [],
+    "constraints": [
+      "Outside MVP Scope or requires heritage pathway"
+    ],
+    "uncertainty": 0
+  },
+  {
+    "id": "TC6",
+    "status": "AMBER",
+    "archetype": "1930s Cavity Terrace",
+    "moistureRisk": "LOW",
+    "preconditions": [
+      "Ventilation upgrade must precede airtightness improvement"
+    ],
+    "blocked": [
+      "airtightness improvement"
+    ],
+    "sequencing": [
+      "Ventilation upgrade must precede airtightness improvement",
+      "cavity wall insulation",
+      "loft insulation"
+    ],
+    "constraints": [
+      "airtightness improvement: Blocked by safety constraint"
+    ],
+    "uncertainty": 0
+  }
+]

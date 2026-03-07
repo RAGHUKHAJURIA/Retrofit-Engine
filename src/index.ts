@@ -33,14 +33,14 @@ export class RetrofitFeasibilityEngine {
     const safetyContext = {
       wall_type: input.wall_description?.toUpperCase() || "UNKNOWN",
       climate_exposure: climate.climate_exposure,
-      damp_history: input.damp_history,
+      damp_history: input.damp_history === "yes" || (input.damp_history as unknown) === true,
       ventilation_type: input.ventilation_type?.toUpperCase() || "UNKNOWN",
-      airtightness_improvement: true, 
-      ventilation_upgrade_planned: false,
-      ventilation_quality: "UNKNOWN"
+      airtightness_improvement: archetype.eligible_measures.includes("airtightness improvement"), 
+      ventilation_upgrade_planned: input.retrofit_target === "ventilation" || archetype.eligible_measures.includes("extract ventilation upgrade"),
+      ventilation_quality: input.ventilation_type === "natural" && input.condensation_history === "yes" ? "POOR" : "UNKNOWN"
     };
 
-    const safetyAssessment = MoistureVentilationEngine.evaluate({ ...safetyContext, ...input });
+    const safetyAssessment = MoistureVentilationEngine.evaluate({ ...input, ...safetyContext });
 
     // 3. Sequencing Rules Engine
     const sequencing = SequencingEngine.generatePathway(

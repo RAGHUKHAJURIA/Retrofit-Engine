@@ -66,14 +66,18 @@ export class SequencingEngine {
 
       // 4. Heat Pump Dependency rule
       if (!isBlocked && measure.id === "air source heat pump") {
-        // Pseudo check: if fabric upgrades are blocked, heat pump is blocked
-        // Since we don't have EPC calculated, we use a basic boolean check
-        if (blocked.some(b => b.measure === "internal wall insulation" || b.measure === "external wall insulation" || b.measure === "cavity wall insulation")) {
+        const wallInsulationPending = eligibleMeasureIds.some(m => m.includes("wall insulation"));
+        const blockedWallInsulation = blocked.some(b => b.measure.includes("wall insulation"));
+        
+        if (wallInsulationPending || blockedWallInsulation) {
           blocked.push({
-            measure: measure.id,
-            reason: `Fabric upgrade prerequisite threshold required`
+            measure: "Heat pump installation",
+            reason: `Fabric performance below minimum threshold`
           });
           isBlocked = true;
+          if (!required_preconditions.includes("Fabric upgrades required before electrification.")) {
+            required_preconditions.push("Fabric upgrades required before electrification.");
+          }
         }
       }
 

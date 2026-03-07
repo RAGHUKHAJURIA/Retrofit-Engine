@@ -97,5 +97,41 @@ export const ARCHETYPE_RULES: ArchetypeRule[] = [
       retrofit_constraints: ["solid wall insulation check", "damp risk assessment"],
       eligible_measures: ["internal wall insulation", "loft insulation", "extract ventilation upgrade", "boiler replacement", "solar pv"]
     }
+  },
+  {
+    id: "1970s_detached",
+    conditions: {
+      construction_age_band: "1960-1980",
+      wall_description: "cavity",
+      property_type: "detached"
+    },
+    archetype: {
+      id: "1970s Detached",
+      baseline_insulation_level: "unfilled cavity",
+      baseline_airtightness: "moderate",
+      default_ventilation: "natural extract",
+      baseline_moisture_sensitivity: MoistureRisk.LOW,
+      typical_heating_type: "gas boiler",
+      retrofit_constraints: [],
+      eligible_measures: ["loft insulation", "cavity wall insulation", "air source heat pump"]
+    }
+  },
+  {
+    id: "1930s_cavity_terrace",
+    conditions: {
+      construction_age_band: "1930-1949",
+      wall_description: "cavity",
+      property_type: "terraced"
+    },
+    archetype: {
+      id: "1930s Cavity Terrace",
+      baseline_insulation_level: "unfilled cavity",
+      baseline_airtightness: "moderate",
+      default_ventilation: "natural extract",
+      baseline_moisture_sensitivity: MoistureRisk.MEDIUM,
+      typical_heating_type: "gas boiler",
+      retrofit_constraints: [],
+      eligible_measures: ["loft insulation", "cavity wall insulation", "airtightness improvement"]
+    }
   }
 ];
